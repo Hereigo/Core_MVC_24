@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# Default severity for analyzer diagnostics with category 'Design'
+dotnet_analyzer_diagnostic.category-Design.severity = none
+
+# Default severity for analyzer diagnostics with category 'Documentation'
+dotnet_analyzer_diagnostic.category-Documentation.severity = none
+
+# Default severity for analyzer diagnostics with category 'Nomenclature'
+dotnet_analyzer_diagnostic.category-Nomenclature.severity = none

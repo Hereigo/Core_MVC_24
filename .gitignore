@@ -396,6 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/TestDb24.db
-/TestDb24.db-shm
-/TestDb24.db-wal
+
+# Custom
+/TestDb24.db*
