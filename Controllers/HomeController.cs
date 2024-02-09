@@ -27,9 +27,9 @@ namespace Core_MVC_24.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Students()
+        public async Task<IActionResult> Profiles()
         {
-            return View(await _appDataContext.Students.ToListAsync());
+            return View(await _appDataContext.Profiles.ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
