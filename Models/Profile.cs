@@ -17,6 +17,7 @@ namespace Core_MVC_24.Models
         public string FamilyName { get; set; }
         public string YomiName { get; set; }
         public string GivenNameYomi { get; set; }
+        [Display(Name = "AddN.Yomi")]
         public string AdditionalNameYomi { get; set; }
         public string FamilyNameYomi { get; set; }
         public string NamePrefix { get; set; }
@@ -28,7 +29,9 @@ namespace Core_MVC_24.Models
         public string Birthday { get; set; }
         public string Gender { get; set; }
         public string Location { get; set; }
+        [Display(Name = "Billing")]
         public string BillingInformation { get; set; }
+        [Display(Name = "Directory")]
         public string DirectoryServer { get; set; }
         public string Mileage { get; set; }
         public string Occupation { get; set; }
@@ -39,6 +42,7 @@ namespace Core_MVC_24.Models
         public string Notes { get; set; }
         public string Language { get; set; }
         public string Photo { get; set; }
+        [Display(Name = "Group")]
         public string GroupMembership { get; set; }
         public string Email1type { get; set; }
         public string Email1value { get; set; }
@@ -63,6 +67,7 @@ namespace Core_MVC_24.Models
         public string Address1Region { get; set; }
         public string Address1PostalCode { get; set; }
         public string Address1Country { get; set; }
+        [Display(Name = "AddrXtend")]
         public string Address1ExtendedAddress { get; set; }
         public string Org1type { get; set; }
         public string Org1Name { get; set; }
@@ -71,6 +76,7 @@ namespace Core_MVC_24.Models
         public string Org1Department { get; set; }
         public string Org1Symbol { get; set; }
         public string Org1Location { get; set; }
+        [Display(Name = "JobDescrip")]
         public string Org1JobDescription { get; set; }
         public string Website1type { get; set; }
         public string Website1value { get; set; }

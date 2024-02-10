@@ -7,16 +7,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Core_MVC_24.styles.css" asp-append-version="true" />
-    <style>
-        .navbar-toggler-icon {
-            background-image: none;
-        }
-
-            .navbar-toggler-icon::before {
-                font-family: FontAwesome;
-                content: "\f0c9"; /* fa-bars, fa-navicon */
-            }
-    </style>
 </head>
 <body>
     <header>
@@ -44,7 +34,8 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div style="margin-left:1rem">
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
