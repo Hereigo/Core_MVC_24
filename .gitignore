@@ -399,3 +399,4 @@ FodyWeavers.xsd
 
 # Custom
 /TestDb24.db*
+/ConsoleTestApp/GIT_IGNORE.cs
