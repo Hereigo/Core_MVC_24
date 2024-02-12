@@ -1,7 +1,8 @@
-﻿
-string decrypted = "";
-string encrypted = "";
-string key_File_ = "";
+﻿using ConsoleTestApp;
+
+string decrypted = iGor.decrypted;
+string encrypted = iGor.encrypted;
+string key_File_ = iGor.key_File_;
 
 try
 {
