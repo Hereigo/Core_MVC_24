@@ -12,7 +12,7 @@ try
         Cryptonic.GenerateAESKey(key_File_);
         Console.WriteLine("Key has generated.");
     }
-    else if (File.Exists(decrypted)) // Encrypting
+    else if (File.Exists(decrypted))
     {
         if (File.Exists(encrypted))
         {
@@ -30,7 +30,7 @@ try
             // should also remove Decrypted after test.
         }
     }
-    else if (File.Exists(encrypted)) // Decrypting
+    else if (!File.Exists(decrypted) && File.Exists(encrypted))
     {
         Console.WriteLine("Decrypting...");
         Cryptonic.Decrypt(encrypted, decrypted, key_File_);
