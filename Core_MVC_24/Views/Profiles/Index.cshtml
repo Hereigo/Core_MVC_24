@@ -231,9 +231,17 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.ID" class="bi-wrapper">
+                        <i class="bi bi-card-list"></i>
+                    </a>
+                    &nbsp;
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="bi-wrapper">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    &nbsp;
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="bi-wrapper">
+                        <i class="bi bi-trash"></i>
+                    </a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AaaType)
