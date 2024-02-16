@@ -5,15 +5,14 @@
     Layout = "_LayoutWide";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th></th>
+            <th>
+                <a asp-action="Create" class="bi-wrapper">
+                    &nbsp; &nbsp; &nbsp; <i class="bi bi-slack"></i>
+                </a>
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.AaaType)
             </th>
