@@ -10,13 +10,12 @@ namespace Core_MVC_24.Data
 
             if (context.Profiles.Any())
             {
-                return;   // DB has been seeded
+                return; // DB has been seeded already.
             }
 
             var profiles = new Profile[]
             {
-                new Profile
-                {
+                new() {
                     AaaType="AAAA",
                     Name="AAAA",
                     GivenName="AAAA",

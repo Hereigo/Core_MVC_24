@@ -1,8 +1,8 @@
 ﻿
-1. Remove some fields REQUIRED attribute.
+1. Capitalize first letter of Name when SAVE.
 
 2. Re-Order Create-New Fields.
 
-3. Capitalize first letter of Name when SAVE.
+3. 
 
 4. 

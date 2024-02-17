@@ -13,8 +13,7 @@ namespace Core_MVC_24.Data
         }
 
         // public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
-        // {
-        // }
+        // { ... }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -23,15 +22,8 @@ namespace Core_MVC_24.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.Entity<Course>().ToTable("Course");
-            // modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
-            // modelBuilder.Entity<Student>().ToTable("Student");
             modelBuilder.Entity<Profile>().ToTable("Profiles");
         }
-
-        // public DbSet<Course> Courses { get; set; }
-        // public DbSet<Enrollment> Enrollments { get; set; }
-        // public DbSet<Student> Students { get; set; }
 
         public DbSet<Profile> Profiles { get; set; }
     }
