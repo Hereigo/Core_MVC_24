@@ -6,11 +6,13 @@ namespace Core_MVC_24.Models
     public class Profile
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string ID { get; set; }
-        
+        public string ProfileID { get; set; }
+
+        [Required]
         [Display(Name = "Type")]
-        public string AaaType { get; set; }
+        public string AType { get; set; }
         
+        [Required]
         public string Name { get; set; }
 
         [Display(Name = "GivenN.")]

@@ -16,7 +16,7 @@ namespace Core_MVC_24.Data
             var profiles = new Profile[]
             {
                 new() {
-                    AaaType="AAAA",
+                    AType="AAAA",
                     Name="AAAA",
                     GivenName="AAAA",
                     AdditionalName="AAAA",
