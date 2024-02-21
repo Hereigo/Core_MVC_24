@@ -28,3 +28,7 @@ body {
 th:first-child {
     min-width: 6rem;
 }
+
+.wide-container {
+    margin-left: .9rem;
+}

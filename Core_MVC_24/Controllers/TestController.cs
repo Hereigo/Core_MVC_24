@@ -20,5 +20,12 @@ namespace Core_MVC_24.Controllers
 
             return NotFound();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult TestSubmit(string abracadabra)
+        {
+            return View("Index");
+        }
     }
 }
