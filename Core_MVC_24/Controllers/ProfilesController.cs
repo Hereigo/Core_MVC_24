@@ -16,6 +16,8 @@ namespace Core_MVC_24.Controllers
 
         public async Task<IActionResult> Index()
         {
+            DbInitializer.Initialize(_context);
+
             return View(await _context.Profiles.ToListAsync());
         }
 

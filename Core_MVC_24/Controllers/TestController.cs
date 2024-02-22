@@ -14,7 +14,7 @@ namespace Core_MVC_24.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult TestSubmit(string abracadabra)
+        public IActionResult TestSubmit(string blablatest)
         {
             string webRootPath = _webHostEnvironment.WebRootPath;
 
@@ -29,7 +29,7 @@ namespace Core_MVC_24.Controllers
             {
                 try
                 {
-                    Cryptonic.DecryptByPass(filePathN, filePath, abracadabra);
+                    Cryptonic.DecryptByPass(filePathN, filePath, blablatest);
                 }
                 catch (Exception)
                 {
