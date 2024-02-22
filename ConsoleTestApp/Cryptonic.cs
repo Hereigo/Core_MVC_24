@@ -1,9 +1,9 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-internal static class Cryptonic
+public static class Cryptonic
 {
-    internal static void GenerateAESKey(string keyFilePath)
+    public static void GenerateAESKey(string keyFilePath)
     {
         using AesManaged aes = new();
         aes.KeySize = 256;
@@ -14,7 +14,7 @@ internal static class Cryptonic
         File.WriteAllBytes(keyFilePath + ".iv", aes.IV);
     }
 
-    internal static void Encrypt(string decrypted, string encrypted, string key_File_)
+    public static void Encrypt(string decrypted, string encrypted, string key_File_)
     {
         using FileStream fsInput = new(decrypted, FileMode.Open);
         using FileStream fsOutput = new(encrypted, FileMode.Create);
@@ -23,7 +23,7 @@ internal static class Cryptonic
         fsInput.CopyTo(cs);
     }
 
-    internal static void Decrypt(string encrypted, string decrypted, string key_File_)
+    public static void Decrypt(string encrypted, string decrypted, string key_File_)
     {
         using FileStream fsInput = new(encrypted, FileMode.Open);
         using FileStream fsOutput = new(decrypted, FileMode.Create);
@@ -32,7 +32,7 @@ internal static class Cryptonic
         fsInput.CopyTo(cs);
     }
 
-    internal static ICryptoTransform CreateAesCryptor(bool isDecrypt, string key_File_)
+    public static ICryptoTransform CreateAesCryptor(bool isDecrypt, string key_File_)
     {
         using AesManaged aes = new();
         aes.Key = File.ReadAllBytes(key_File_);
@@ -42,7 +42,7 @@ internal static class Cryptonic
             : aes.CreateEncryptor();
     }
 
-    internal static ICryptoTransform CreateAesCryptorByPass(bool isDecrypt, string password)
+    public static ICryptoTransform CreateAesCryptorByPass(bool isDecrypt, string password)
     {
         UnicodeEncoding UE = new UnicodeEncoding();
         using AesManaged aes = new();
@@ -58,7 +58,7 @@ internal static class Cryptonic
             : aes.CreateEncryptor();
     }
 
-    internal static void EncryptByPass(string decrypted, string encrypted, string password)
+    public static void EncryptByPass(string decrypted, string encrypted, string password)
     {
         using FileStream fsInput = new(decrypted, FileMode.Open);
         using FileStream fsOutput = new(encrypted, FileMode.Create);
@@ -67,7 +67,7 @@ internal static class Cryptonic
         fsInput.CopyTo(cs);
     }
 
-    internal static void DecryptByPass(string encrypted, string decrypted, string password)
+    public static void DecryptByPass(string encrypted, string decrypted, string password)
     {
         using FileStream fsInput = new(encrypted, FileMode.Open);
         using FileStream fsOutput = new(decrypted, FileMode.Create);

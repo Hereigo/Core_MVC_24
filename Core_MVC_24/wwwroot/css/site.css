@@ -21,6 +21,8 @@ body {
     margin-bottom: 60px;
 }
 
+/****** CUSTOMIZATION ******/
+
 .bi-wrapper {
     text-decoration: none;
 }
@@ -30,5 +32,9 @@ th:first-child {
 }
 
 .wide-container {
-    margin-left: .9rem;
+    margin-left: .2rem;
+}
+
+input {
+    margin-bottom: .5rem;
 }

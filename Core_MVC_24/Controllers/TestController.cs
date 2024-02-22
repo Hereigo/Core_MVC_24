@@ -9,23 +9,38 @@ namespace Core_MVC_24.Controllers
 
         public IActionResult Index()
         {
-            string webRootPath = _webHostEnvironment.WebRootPath;
-
-            string filePath = Path.Combine(webRootPath, iGor.TestFile);
-
-            if (System.IO.File.Exists(filePath))
-            {
-                return View();
-            }
-
-            return NotFound();
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult TestSubmit(string abracadabra)
         {
-            return View("Index");
+            string webRootPath = _webHostEnvironment.WebRootPath;
+
+            string filePath = Path.Combine(webRootPath, iGor.TestFile);
+            string filePathN = Path.Combine(webRootPath, iGor.TestFileN);
+
+            if (System.IO.File.Exists(filePath))
+            {
+                return RedirectToAction("Index", "Profiles");
+            }
+            else if (System.IO.File.Exists(filePathN))
+            {
+                try
+                {
+                    Cryptonic.DecryptByPass(filePathN, filePath, abracadabra);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                return View("Index");
+            }
+            else
+            {
+                return View("Index");
+            }
         }
     }
 }
