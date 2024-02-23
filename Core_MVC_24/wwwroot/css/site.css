@@ -38,3 +38,9 @@ th:first-child {
 input {
     margin-bottom: .5rem;
 }
+
+#blablatest {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 15rem;
+}

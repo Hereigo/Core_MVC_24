@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core_MVC_24.Data
 {
-    public class AppDataContext : DbContext
+    public class DataContext : DbContext
     {
         protected readonly IConfiguration Configuration;
 
-        public AppDataContext(IConfiguration configuration)
+        public DataContext(IConfiguration configuration)
         {
             Configuration = configuration;
         }

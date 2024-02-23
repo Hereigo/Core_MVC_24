@@ -4,7 +4,7 @@ namespace Core_MVC_24.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(AppDataContext context)
+        public static void Initialize(DataContext context)
         {
             context.Database.EnsureCreated();
 

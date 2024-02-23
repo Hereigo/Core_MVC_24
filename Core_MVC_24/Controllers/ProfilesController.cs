@@ -7,18 +7,23 @@ namespace Core_MVC_24.Controllers
 {
     public class ProfilesController : Controller
     {
-        private readonly AppDataContext _context;
+        private readonly DataContext _context;
 
-        public ProfilesController(AppDataContext context)
+        public ProfilesController(DataContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            DbInitializer.Initialize(_context);
-
-            return View(await _context.Profiles.ToListAsync());
+            try
+            {
+                return View(await _context.Profiles.ToListAsync());
+            }
+            catch (Exception)
+            {
+                return View(new List<Profile>());
+            }
         }
 
         public async Task<IActionResult> Details(string id)

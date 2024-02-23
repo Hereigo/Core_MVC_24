@@ -4,7 +4,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<AppDataContext>();
+builder.Services.AddTransient<DataContext>();
 
 WebApplication app = builder.Build();
 
@@ -39,7 +39,8 @@ static void CreateDbIfNotExists(IHost host)
         var services = scope.ServiceProvider;
         try
         {
-            var context = services.GetRequiredService<AppDataContext>();
+            var context = services.GetRequiredService<DataContext>();
+
             // Can be run while start App:
             // DbInitializer.Initialize(context);
         }
