@@ -4,6 +4,8 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    // Extend size for List page.
+
     const mainContainer = document.getElementById("main-container");
 
     if (document.getElementById("isWideList")) {
@@ -12,5 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         mainContainer.classList.remove("wide-container");
         mainContainer.classList.add("container");
+    }
+
+    // Loader while submit is processing.
+
+    const homeForm = document.getElementById("homeForm");
+    const homeLoader = document.getElementById("homeLoader");
+
+    if (homeForm) {
+        homeForm.style.display = "block";
+        homeLoader.style.display = "none";
+
+        homeForm.addEventListener("submit", () => {
+            homeForm.style.display = "none";
+            homeLoader.style.display = "block";
+        });
     }
 });
