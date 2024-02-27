@@ -5,20 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core_MVC_24.Controllers
 {
-    public class ProfilesController : Controller
+    public class ProfilesController(DataContext context) : Controller
     {
-        private readonly DataContext _context;
-
-        public ProfilesController(DataContext context)
-        {
-            _context = context;
-        }
-
         public async Task<IActionResult> Index()
         {
             try
             {
-                return View(await _context.Profiles.ToListAsync());
+                return View(await context.Profiles.ToListAsync());
             }
             catch (Exception)
             {
@@ -33,7 +26,7 @@ namespace Core_MVC_24.Controllers
                 return NotFound();
             }
 
-            var profile = await _context.Profiles.FirstOrDefaultAsync(m => m.ProfileID == id);
+            var profile = await context.Profiles.FirstOrDefaultAsync(m => m.ProfileID == id);
 
             if (profile == null)
             {
@@ -55,8 +48,8 @@ namespace Core_MVC_24.Controllers
             ModelState.Remove("ProfileID");
             if (ModelState.IsValid)
             {
-                _context.Add(profile);
-                await _context.SaveChangesAsync();
+                context.Add(profile);
+                await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(profile);
@@ -69,7 +62,7 @@ namespace Core_MVC_24.Controllers
                 return NotFound();
             }
 
-            var profile = await _context.Profiles.FindAsync(id);
+            var profile = await context.Profiles.FindAsync(id);
 
             if (profile == null)
             {
@@ -91,8 +84,8 @@ namespace Core_MVC_24.Controllers
             {
                 try
                 {
-                    _context.Update(profile);
-                    await _context.SaveChangesAsync();
+                    context.Update(profile);
+                    await context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,7 +110,7 @@ namespace Core_MVC_24.Controllers
                 return NotFound();
             }
 
-            var profile = await _context.Profiles
+            var profile = await context.Profiles
                 .FirstOrDefaultAsync(m => m.ProfileID == id);
             if (profile == null)
             {
@@ -131,19 +124,19 @@ namespace Core_MVC_24.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var profile = await _context.Profiles.FindAsync(id);
+            var profile = await context.Profiles.FindAsync(id);
             if (profile != null)
             {
-                _context.Profiles.Remove(profile);
+                context.Profiles.Remove(profile);
             }
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProfileExists(string id)
         {
-            return _context.Profiles.Any(e => e.ProfileID == id);
+            return context.Profiles.Any(e => e.ProfileID == id);
         }
     }
 }

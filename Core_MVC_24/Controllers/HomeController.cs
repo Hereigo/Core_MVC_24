@@ -6,18 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core_MVC_24.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(ILogger<HomeController> logger, DataContext dataContext, IWebHostEnvironment webHostEnvironment) : Controller
     {
-        private readonly DataContext _dataContext;
-        private readonly FileManager _fileMan;
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger, DataContext dataContext, IWebHostEnvironment webHostEnvironment)
-        {
-            _dataContext = dataContext;
-            _fileMan = new FileManager(webHostEnvironment);
-            _logger = logger;
-        }
+        private readonly FileManager _fileMan = new(webHostEnvironment);
 
         public IActionResult Index()
         {
@@ -33,7 +24,7 @@ namespace Core_MVC_24.Controllers
 
         public async Task<IActionResult> Profiles()
         {
-            return View(await _dataContext.Profiles.ToListAsync());
+            return View(await dataContext.Profiles.ToListAsync());
         }
 
         [HttpPost]
