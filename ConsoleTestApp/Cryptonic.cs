@@ -58,21 +58,25 @@ public static class Cryptonic
             : aes.CreateEncryptor();
     }
 
-    public static void EncryptByPass(string decrypted, string encrypted, string password)
+    public static async Task EncryptByPass(string decrypted, string encrypted, string password)
     {
         using FileStream fsInput = new(decrypted, FileMode.Open);
         using FileStream fsOutput = new(encrypted, FileMode.Create);
         ICryptoTransform encryptor = CreateAesCryptorByPass(false, password);
         using CryptoStream cs = new CryptoStream(fsOutput, encryptor, CryptoStreamMode.Write);
         fsInput.CopyTo(cs);
+
+        System.Threading.Thread.Sleep(3000);
     }
 
-    public static void DecryptByPass(string encrypted, string decrypted, string password)
+    public static async Task DecryptByPass(string encrypted, string decrypted, string password)
     {
         using FileStream fsInput = new(encrypted, FileMode.Open);
         using FileStream fsOutput = new(decrypted, FileMode.Create);
         ICryptoTransform decryptor = CreateAesCryptorByPass(true, password);
         using CryptoStream cs = new CryptoStream(fsOutput, decryptor, CryptoStreamMode.Write);
         fsInput.CopyTo(cs);
+
+        System.Threading.Thread.Sleep(3000);
     }
 }

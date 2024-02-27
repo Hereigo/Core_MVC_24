@@ -15,7 +15,9 @@ namespace Core_MVC_24.Data
             _filePathN = Path.Combine(_webHostEnvironment.WebRootPath, iGor.TestFileN);
         }
 
-        internal void CheckDatabase(string blablatest)
+        // TODO:
+        // TEST ME !!!!!!!!
+        internal async Task CheckDatabase(string blablatest)
         {
             // TODO:
             // Refactor time coze its for previous.
@@ -25,7 +27,7 @@ namespace Core_MVC_24.Data
             {
                 File.Copy(_filePathN, filePathNTemp, true);
 
-                Cryptonic.EncryptByPass(_filePath, _filePathN, blablatest);
+                await Cryptonic.EncryptByPass(_filePath, _filePathN, blablatest);
 
                 if (File.Exists(filePathNTemp))
                 {
@@ -36,7 +38,7 @@ namespace Core_MVC_24.Data
             }
             else if (File.Exists(_filePathN))
             {
-                Cryptonic.DecryptByPass(_filePathN, _filePath, blablatest);
+                await Cryptonic.DecryptByPass(_filePathN, _filePath, blablatest);
             }
             else
             {

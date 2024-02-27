@@ -38,11 +38,11 @@ namespace Core_MVC_24.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult TestSubmit(string blablatest)
+        public async Task<IActionResult> TestSubmit(string blablatest)
         {
             try
             {
-                _fileMan.CheckDatabase(blablatest);
+                await _fileMan.CheckDatabase(blablatest);
             }
             catch (Exception)
             {
