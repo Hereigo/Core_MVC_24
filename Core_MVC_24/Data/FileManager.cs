@@ -1,56 +1,57 @@
-﻿using ConsoleTestApp;
+﻿using System.IO.Compression;
+using ConsoleTestApp;
+using NuGet.Packaging;
 
 namespace Core_MVC_24.Data
 {
     public class FileManager
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly string _filePath;
-        private readonly string _filePathN;
+
+        private readonly string _dabaseFile;
+        private readonly string _generalPath;
+        private readonly string _lockedFile;
+        private readonly string _packedFile;
+        private readonly string _workFolder;
 
         public FileManager(IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
-            _filePath = Path.Combine(_webHostEnvironment.WebRootPath, iGor.TestFile);
-            _filePathN = Path.Combine(_webHostEnvironment.WebRootPath, iGor.TestFileN);
+            _generalPath = Path.Combine(_webHostEnvironment.WebRootPath, "..\\..\\..\\..\\..\\Downloads\\EOS\\Tests\\");
+            _dabaseFile = Path.Combine(_generalPath, "workFolder\\TestDb24.dat");
+            _lockedFile = Path.Combine(_generalPath, "Tests.aaa");
+            _packedFile = Path.Combine(_generalPath, "Tests.pax");
+            _workFolder = Path.Combine(_generalPath, "workFolder\\");
+        }
+
+        public string CreatePacket(string sourceDirectory, string zipFilePath)
+        {
+            try
+            {
+
+
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return $"Error creating zip file: {ex.Message}";
+            }
         }
 
         // TODO:
-        // TEST ME !!!!!!!!
-        internal async Task CheckDatabase(string blablatest)
+        // TEST ME !!!!!!!!!!
+        // TEST ME !!!!!!!!!!
+        // internal async Task ProcessDatabase(string blablatest)
+        internal void ProcessDatabase(string blablatest)
         {
-            // TODO:
-            // Refactor time coze its for previous.
-            string filePathNTemp = $"{_filePathN}.{DateTime.Now:HHmmss}";
 
-            if (DbFileExists())
-            {
-                File.Copy(_filePathN, filePathNTemp, true);
 
-                await Cryptonic.EncryptByPass(_filePath, _filePathN, blablatest);
-
-                if (File.Exists(filePathNTemp))
-                {
-                    CloseConnection();
-
-                    File.Delete(_filePath);
-                }
-            }
-            else if (File.Exists(_filePathN))
-            {
-                await Cryptonic.DecryptByPass(_filePathN, _filePath, blablatest);
-            }
-            else
-            {
-            }
-
-            System.Threading.Thread.Sleep(4000);
         }
 
-        internal bool DbFileExists()
+        internal bool isDbFileExists()
         {
             return
-                File.Exists(_filePath) && new FileInfo(_filePath).Length > 0;
+                File.Exists(_dabaseFile) && new FileInfo(_dabaseFile).Length > 0;
         }
 
         private static void CloseConnection()

@@ -1,62 +1,76 @@
-﻿using ConsoleTestApp;
+﻿using System.IO.Compression;
 
-string decrypted = iGor.decrypted;
-string encrypted = iGor.encrypted;
-string key_File_ = iGor.key_File_;
-string password_ = iGor.password_;
+string _generalPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads\\EOS\\Tests\\");
+string _dabaseFile = Path.Combine(_generalPath, "workFolder\\TestDb24.dat");
+string _lockedFile = Path.Combine(_generalPath, "Tests.aaa");
+string _packedFile = Path.Combine(_generalPath, "Tests.pax");
+string _workFolder = Path.Combine(_generalPath, "workFolder\\");
 
-bool useKeyPass = true;
-
-try
+Console.WriteLine("hello");
+string blablatest = Console.ReadLine();
+Console.WriteLine("hello again");
+if (string.IsNullOrEmpty(blablatest) || blablatest != Console.ReadLine())
 {
-    if (!useKeyPass && !File.Exists(key_File_))
+    Console.WriteLine("wrong hello!");
+}
+else
+{
+    try
     {
-        Console.WriteLine("Key is generating...");
-        Cryptonic.GenerateAESKey(key_File_);
-        Console.WriteLine("Key has generated.");
-    }
-    else if (File.Exists(decrypted))
-    {
-        if (File.Exists(encrypted))
+        if (isDbFileExists())
         {
-            Console.WriteLine("Decrypted BackUping...");
-            File.Move(encrypted, encrypted + "." + DateTime.Now.ToString("MMddHHmm"));
-            Console.WriteLine("Decrypted BackUped.");
+            string lockedFileBkp = $"{_lockedFile}_B4.{DateTime.Now:ddHHmmss}";
+
+            if (File.Exists(_lockedFile)) // Create Bkp
+            {
+                File.Copy(_lockedFile, lockedFileBkp, true);
+            }
+
+            if (File.Exists(lockedFileBkp)) // Pax
+            {
+                File.Delete(_lockedFile);
+
+                ZipFile.CreateFromDirectory(_workFolder, _packedFile, CompressionLevel.SmallestSize, true);
+            }
+
+            if (File.Exists(_packedFile)) // Cryps
+            {
+                Cryptonic.EncryptByPass(_packedFile, _lockedFile, blablatest);
+            }
+
+            if (File.Exists(_lockedFile)) // Clear
+            {
+                Directory.Delete(_workFolder, true);
+                File.Delete(_packedFile);
+            }
         }
-        else
+        else if (!Directory.Exists(_workFolder) && !isDbFileExists())
         {
-            Console.WriteLine("Encrypting...");
+            Cryptonic.DecryptByPass(_lockedFile, _packedFile, blablatest);
 
-            if (useKeyPass)
-                Cryptonic.EncryptByPass(decrypted, encrypted, password_);
-            else
-                Cryptonic.Encrypt(decrypted, encrypted, key_File_);
+            if (File.Exists(_packedFile))
+            {
+                ZipFile.ExtractToDirectory(_packedFile, _generalPath);
+            }
 
-            Console.WriteLine("Encrypted finished.");
-
-            // TODO:
-            // should also remove Decrypted after test.
+            if (isDbFileExists())
+            {
+                File.Delete(_packedFile);
+            }
         }
-    }
-    else if (!File.Exists(decrypted) && File.Exists(encrypted))
-    {
-        Console.WriteLine("Decrypting...");
 
-        if (useKeyPass)
-            Cryptonic.DecryptByPass(encrypted, decrypted, password_);
-        else
-            Cryptonic.Decrypt(encrypted, decrypted, key_File_);
-
-        Console.WriteLine("Decrypted finished.");
+        Console.WriteLine("\r\n Finished.");
     }
-    else
+    catch (Exception ex)
     {
-        Console.WriteLine("Nothing to do...");
+        Console.WriteLine("Error: " + ex.Message);
     }
 }
-catch (Exception ex)
-{
-    Console.WriteLine("Error: " + ex.Message);
-}
 
-Console.WriteLine("\r\n Finished.");
+/////////////////////////////////////////////////////////
+
+bool isDbFileExists()
+{
+    return
+        File.Exists(_dabaseFile) && new FileInfo(_dabaseFile).Length > 0;
+}

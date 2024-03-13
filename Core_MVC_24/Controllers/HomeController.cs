@@ -12,7 +12,7 @@ namespace Core_MVC_24.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.fileExists = _fileMan.DbFileExists();
+            ViewBag.fileExists = _fileMan.isDbFileExists();
 
             return View();
         }
@@ -29,11 +29,13 @@ namespace Core_MVC_24.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> TestSubmit(string blablatest)
+        public IActionResult TestSubmit(string blablatest)
+        //public async Task<IActionResult> TestSubmit(string blablatest)
         {
             try
             {
-                await _fileMan.CheckDatabase(blablatest);
+                //await 
+                    _fileMan.ProcessDatabase(blablatest);
             }
             catch (Exception)
             {

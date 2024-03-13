@@ -58,7 +58,8 @@ public static class Cryptonic
             : aes.CreateEncryptor();
     }
 
-    public static async Task EncryptByPass(string decrypted, string encrypted, string password)
+    public static void EncryptByPass(string decrypted, string encrypted, string password)
+    // public static async Task EncryptByPass(string decrypted, string encrypted, string password)
     {
         using FileStream fsInput = new(decrypted, FileMode.Open);
         using FileStream fsOutput = new(encrypted, FileMode.Create);
@@ -69,7 +70,8 @@ public static class Cryptonic
         System.Threading.Thread.Sleep(3000);
     }
 
-    public static async Task DecryptByPass(string encrypted, string decrypted, string password)
+    public static void DecryptByPass(string encrypted, string decrypted, string password)
+    // public static async Task DecryptByPass(string encrypted, string decrypted, string password)
     {
         using FileStream fsInput = new(encrypted, FileMode.Open);
         using FileStream fsOutput = new(decrypted, FileMode.Create);
