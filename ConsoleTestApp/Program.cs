@@ -6,18 +6,13 @@ string _lockedFile = Path.Combine(_generalPath, "Tests.aaa");
 string _packedFile = Path.Combine(_generalPath, "Tests.pax");
 string _workFolder = Path.Combine(_generalPath, "workFolder\\");
 
-Console.WriteLine("hello");
-string blablatest = Console.ReadLine();
-Console.WriteLine("hello again");
-if (string.IsNullOrEmpty(blablatest) || blablatest != Console.ReadLine())
+string blablatest = "";
+
+try
 {
-    Console.WriteLine("wrong hello!");
-}
-else
-{
-    try
+    if (isDbFileExists())
     {
-        if (isDbFileExists())
+        if (ShouldDoIt(false))
         {
             string lockedFileBkp = $"{_lockedFile}_B4.{DateTime.Now:ddHHmmss}";
 
@@ -43,8 +38,13 @@ else
                 Directory.Delete(_workFolder, true);
                 File.Delete(_packedFile);
             }
+
+            Console.WriteLine("Successfully Finished.");
         }
-        else if (!Directory.Exists(_workFolder) && !isDbFileExists())
+    }
+    else if (!Directory.Exists(_workFolder) && !isDbFileExists())
+    {
+        if (ShouldDoIt(true))
         {
             Cryptonic.DecryptByPass(_lockedFile, _packedFile, blablatest);
 
@@ -57,20 +57,47 @@ else
             {
                 File.Delete(_packedFile);
             }
-        }
 
-        Console.WriteLine("\r\n Finished.");
+            Console.WriteLine("Successfully Prepaired For Work.");
+        }
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Error: " + ex.Message);
-    }
+
+    Console.WriteLine("\r\n Finished.");
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Error: " + ex.Message);
 }
 
-/////////////////////////////////////////////////////////
+// =================================================================================
 
 bool isDbFileExists()
 {
     return
         File.Exists(_dabaseFile) && new FileInfo(_dabaseFile).Length > 0;
+}
+
+bool ShouldDoIt(bool isStart)
+{
+    bool isWrong;
+
+    Console.WriteLine(isStart ? "Write To Start Work?" : "Write To Finish?");
+    blablatest = Console.ReadLine();
+
+    if (isStart)
+    {
+        isWrong = string.IsNullOrEmpty(blablatest) || blablatest.Length < 12;
+    }
+    else
+    {
+        Console.WriteLine("Write again:");
+        isWrong = string.IsNullOrEmpty(blablatest) || blablatest != Console.ReadLine();
+    }
+
+    if (isWrong)
+    {
+        Console.WriteLine("\r\nWRONG Abrakadabra!");
+    }
+
+    return isWrong;
 }
