@@ -5,16 +5,15 @@ string _dabaseFile = Path.Combine(_generalPath, "workFolder\\TestDb24.dat");
 string _lockedFile = Path.Combine(_generalPath, "Tests.aaa");
 string _packedFile = Path.Combine(_generalPath, "Tests.pax");
 string _workFolder = Path.Combine(_generalPath, "workFolder\\");
-
-string blablatest = "";
+string blablatest;
 
 try
 {
     if (isDbFileExists())
     {
-        if (ShouldDoIt(false))
+        if (!SkipAction(false))
         {
-            string lockedFileBkp = $"{_lockedFile}_B4.{DateTime.Now:ddHHmmss}";
+            string lockedFileBkp = $"{_lockedFile}.B4.{DateTime.Now:ddHHmmss}";
 
             if (File.Exists(_lockedFile)) // Create Bkp
             {
@@ -44,7 +43,7 @@ try
     }
     else if (!Directory.Exists(_workFolder) && !isDbFileExists())
     {
-        if (ShouldDoIt(true))
+        if (!SkipAction(true))
         {
             Cryptonic.DecryptByPass(_lockedFile, _packedFile, blablatest);
 
@@ -77,7 +76,7 @@ bool isDbFileExists()
         File.Exists(_dabaseFile) && new FileInfo(_dabaseFile).Length > 0;
 }
 
-bool ShouldDoIt(bool isStart)
+bool SkipAction(bool isStart)
 {
     bool isWrong;
 
