@@ -4,16 +4,20 @@ namespace ConsoleTestApp
 {
     internal class FileWorker
     {
+        string blablatest = "";
+
         bool isDbFileExists(string dbFile)
         {
             return
                 File.Exists(dbFile) && new FileInfo(dbFile).Length > 0;
         }
 
-        bool SkipAction(bool isStart, string blablatest)
+        bool SkipAction(bool isStart)
         {
             bool isWrong;
             Console.WriteLine(isStart ? "Write To Start Work?" : "Write To Finish?");
+
+            blablatest = Console.ReadLine();
 
             if (isStart)
             {
@@ -38,12 +42,11 @@ namespace ConsoleTestApp
             string _lockedFile = Path.Combine(_generalPath, "Tests.aaa");
             string _packedFile = Path.Combine(_generalPath, "Tests.pax");
             string _workFolder = Path.Combine(_generalPath, "workFolder\\");
-            string blablatest = Console.ReadLine();
             try
             {
                 if (isDbFileExists(_dabaseFile))
                 {
-                    if (!SkipAction(false, blablatest))
+                    if (!SkipAction(false))
                     {
                         string lockedFileBkp = $"{_lockedFile}.B4.{DateTime.Now:ddHHmmss}";
 
@@ -64,12 +67,12 @@ namespace ConsoleTestApp
                             Directory.Delete(_workFolder, true);
                             File.Delete(_packedFile);
                         }
-                        Console.WriteLine("Successfully Finished.");
+                        Console.WriteLine("\r\n Successfully Finished.");
                     }
                 }
                 else if (!Directory.Exists(_workFolder) && !isDbFileExists(_dabaseFile))
                 {
-                    if (!SkipAction(true, blablatest))
+                    if (!SkipAction(true))
                     {
                         Cryptonic.DecryptByPass(_lockedFile, _packedFile, blablatest);
 
@@ -79,7 +82,7 @@ namespace ConsoleTestApp
                         if (isDbFileExists(_dabaseFile))
                             File.Delete(_packedFile);
 
-                        Console.WriteLine("Successfully Prepaired For Work.");
+                        Console.WriteLine("\r\n Successfully Prepaired For Work.");
                     }
                 }
                 Console.WriteLine("\r\n Finished.");
