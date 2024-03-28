@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_MVC_24", "Core_MVC_24\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{7448FDC5-BD65-42A8-B219-6552EA855487}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsWordProcessor", "MsWordProcessor\MsWordProcessor.csproj", "{D5156F7C-CB14-4715-9552-8B27039EA39A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{7448FDC5-BD65-42A8-B219-6552EA855487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7448FDC5-BD65-42A8-B219-6552EA855487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7448FDC5-BD65-42A8-B219-6552EA855487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5156F7C-CB14-4715-9552-8B27039EA39A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5156F7C-CB14-4715-9552-8B27039EA39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5156F7C-CB14-4715-9552-8B27039EA39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5156F7C-CB14-4715-9552-8B27039EA39A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

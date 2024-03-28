@@ -1,4 +1,5 @@
 ﻿using System.IO.Compression;
+using Microsoft.VisualBasic.FileIO;
 
 namespace ConsoleTestApp
 {
@@ -55,7 +56,7 @@ namespace ConsoleTestApp
 
                         if (File.Exists(lockedFileBkp))
                         {
-                            File.Delete(_lockedFile);
+                            FileSystem.DeleteFile(_lockedFile, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
                             ZipFile.CreateFromDirectory(_workFolder, _packedFile, CompressionLevel.SmallestSize, true);
                         }
 
@@ -65,7 +66,7 @@ namespace ConsoleTestApp
                         if (File.Exists(_lockedFile))
                         {
                             Directory.Delete(_workFolder, true);
-                            File.Delete(_packedFile);
+                            FileSystem.DeleteFile(_packedFile, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
                         }
                         Console.WriteLine("\r\n Successfully Finished.");
                     }
@@ -80,7 +81,7 @@ namespace ConsoleTestApp
                             ZipFile.ExtractToDirectory(_packedFile, _generalPath);
 
                         if (isDbFileExists(_dabaseFile))
-                            File.Delete(_packedFile);
+                            FileSystem.DeleteFile(_packedFile, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
 
                         Console.WriteLine("\r\n Successfully Prepaired For Work.");
                     }
