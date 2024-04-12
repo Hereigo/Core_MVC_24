@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using DocumentFormat.OpenXml.Packaging;
+﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace MsWordProcessor
+// install-package DocumentFormat.OpenXml;
+
+namespace ConsoleTestApp
 {
-    internal class Program
+    internal class MsWordProcessor
     {
-        static void Main()
+        static void ProcessRun()
         {
             string msWordTemplate = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads\\TEMPLATE.docx");
+            string outputFilePath = msWordTemplate.Replace("LATE", DateTime.Now.ToString("_ddHHmmss"));
 
             Dictionary<string, string> replaceDictionary = new Dictionary<string, string>
             {
-                { "oldWord1", "newWord1" },
-                { "<Marker2>", "World =)))" },
-                { "<Marker1>", "Hello Hello Hello ..." },
+                { "<Marker1>", "World =)))" },
+                { "<Marker2>", "Hello Hello Hello ..." },
                 { "<Marker3>", "Data must be collected using TLS version 1.2 using strong cryptography. We will not accept calls to our API at lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments as part of our compliance program.\r\nThe application must not store sensitive card holder data (CHD) such as the card security code (CSC) or primary access number (PAN)..."}
             };
 
             try
             {
-                string outputFilePath = msWordTemplate.Replace("LATE", DateTime.Now.ToString("_ddHHmmss"));
-
                 File.Copy(msWordTemplate, outputFilePath, true);
 
                 using (WordprocessingDocument doc = WordprocessingDocument.Open(outputFilePath, true))
