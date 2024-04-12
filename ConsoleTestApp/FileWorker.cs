@@ -66,7 +66,7 @@ namespace ConsoleTestApp
                         if (File.Exists(_lockedFile))
                         {
                             Directory.Delete(_workFolder, true);
-                            FileSystem.DeleteFile(_packedFile, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+                            File.Delete(_packedFile);
                         }
                         Console.WriteLine("\r\n Successfully Finished.");
                     }
@@ -81,12 +81,11 @@ namespace ConsoleTestApp
                             ZipFile.ExtractToDirectory(_packedFile, _generalPath);
 
                         if (isDbFileExists(_dabaseFile))
-                            FileSystem.DeleteFile(_packedFile, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+                            File.Delete(_packedFile);
 
                         Console.WriteLine("\r\n Successfully Prepaired For Work.");
                     }
                 }
-                Console.WriteLine("\r\n Finished.");
             }
             catch (Exception ex)
             {

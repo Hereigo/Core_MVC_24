@@ -16,7 +16,8 @@ namespace MsWordProcessor
             {
                 { "oldWord1", "newWord1" },
                 { "<Marker2>", "World =)))" },
-                { "<Marker1>", "Hello Hello Hello ..." }
+                { "<Marker1>", "Hello Hello Hello ..." },
+                { "<Marker3>", "Data must be collected using TLS version 1.2 using strong cryptography. We will not accept calls to our API at lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments as part of our compliance program.\r\nThe application must not store sensitive card holder data (CHD) such as the card security code (CSC) or primary access number (PAN)..."}
             };
 
             try
