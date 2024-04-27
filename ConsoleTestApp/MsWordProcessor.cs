@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
+// FIRST of all should:
 // install-package DocumentFormat.OpenXml;
 
 namespace ConsoleTestApp
@@ -9,7 +10,7 @@ namespace ConsoleTestApp
     {
         static void ProcessRun()
         {
-            string msWordTemplate = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads\\TEMPLATE.docx");
+            string msWordTemplate = Constants.PathDownloads + "TEMPLATE.docx";
             string outputFilePath = msWordTemplate.Replace("LATE", DateTime.Now.ToString("_ddHHmmss"));
 
             Dictionary<string, string> replaceDictionary = new Dictionary<string, string>
