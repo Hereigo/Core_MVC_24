@@ -28,15 +28,11 @@ public class Program
             return;
         }
 
-        var options = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        };
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         Product product = JsonSerializer.Deserialize<Product>(response.Content!, options)!;
         // OR
         JsonNode data = JsonSerializer.Deserialize<JsonNode>(response.Content!)!;
-        
-        // output result
+
         Console.WriteLine($"""
         --------------------
         json properties
@@ -47,6 +43,7 @@ public class Program
         raw json data
         --------------------
         {data}
+        --------------------
         """);
     }
 }
