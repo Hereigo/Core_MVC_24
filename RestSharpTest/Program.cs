@@ -34,27 +34,27 @@ public class Program
         JsonNode data = JsonSerializer.Deserialize<JsonNode>(response.Content!)!;
 
         Console.WriteLine($"""
-        --------------------
-        json properties
-        --------------------
-        id:     {data["id"]}
+        -----------------------
+        json properties :
+        -----------------------
+        id:     {product.Id}
         name:   {data["name"]}
-        --------------------
-        raw json data
-        --------------------
+        -----------------------
+        raw json data :
+        -----------------------
         {data}
-        --------------------
+        -----------------------
         """);
     }
 }
-//  --------------------
+//  -----------------------
 //  json properties
-//  --------------------
-//  id: 1
-//  name: Commodore 64
-//  --------------------
+//  -----------------------
+//  id:     1
+//  name:   Commodore 64
+//  -----------------------
 //  raw json data
-//  --------------------
+//  -----------------------
 //  {
 //    "id": 1,
 //    "name": "Commodore 64"
