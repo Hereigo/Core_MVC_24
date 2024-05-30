@@ -1,9 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-// FIRST of all should:
-// install-package DocumentFormat.OpenXml;
-
 namespace ConsoleTestApp
 {
     internal class MsWordProcessor

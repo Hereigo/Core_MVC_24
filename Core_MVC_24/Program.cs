@@ -1,4 +1,5 @@
 using Core_MVC_24.Data;
+using Core_MVC_24.Infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

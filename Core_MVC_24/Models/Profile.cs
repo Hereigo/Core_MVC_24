@@ -7,14 +7,11 @@ namespace Core_MVC_24.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string ProfileID { get; set; }
-
         [Required]
         [Display(Name = "Type")]
         public string AType { get; set; }
-        
         [Required]
         public string Name { get; set; }
-
         [Display(Name = "GivenN.")]
         public string? GivenName { get; set; }
         [Display(Name = "AddN.")]

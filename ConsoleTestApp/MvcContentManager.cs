@@ -29,13 +29,15 @@ namespace ConsoleTestApp
             }
             return $"{wwwrootFile}?v={result}";
         }
-        // GetVersionedContentFileLink Using :
+        // USING :
         //
         // @inject IMvcContentManager mvcContentManager
+        //
         // <link rel="stylesheet" href="@mvcContentManager.GetVersionedContentFileLink(Url.Content("\\bundles\\maincss.min.css"))" />
         //
         // public static void ConfigureServices(IServiceCollection services, IConfiguration config)
-        // {   services.AddSingleton<IMvcContentManager, MvcContentManager>();
+        // {
+        //      services.AddSingleton<IMvcContentManager, MvcContentManager>();
 
         internal static string CalcFileMD5Hash(string fullFilePath)
         {
