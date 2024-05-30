@@ -29,4 +29,26 @@
         </div>
         <div class="col-5"></div>
     </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="mt-4 row justify-content-center">
+            <div class="list-group col-6">
+
+                <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="UploadFile">
+                    <div class="mb-2">
+                        <label for="fileToUpload" class="form-label">
+                            Select File to Upload
+                        </label>
+                        <input id="fileToUpload" name="fileToUpload" type="file" class="form-control" />
+                    </div>
+                    <div class="mb-2">
+                        <button class="btn btn-primary">Upload</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>

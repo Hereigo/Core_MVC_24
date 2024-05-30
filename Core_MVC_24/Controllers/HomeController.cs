@@ -16,6 +16,29 @@ namespace Core_MVC_24.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult UploadFile(IFormFile fileToUpload)
+        {
+            if (fileToUpload != null && fileToUpload.Length > 0)
+            {
+                string FileNameOnServer = Path.GetTempPath();
+                FileNameOnServer += fileToUpload.FileName;
+                
+                long FileContentLength = fileToUpload.Length; // bytes
+                string FileContentType = fileToUpload.ContentType;
+
+                using var stream = System.IO.File.Create(FileNameOnServer);
+                fileToUpload.CopyTo(stream);
+
+                return View("UploadComplete", this);
+            }
+            else
+            {
+                // User did not select a file
+                return View("Index");
+            }
+        }
+
         public IActionResult Privacy()
         {
             return View();
