@@ -5,14 +5,15 @@ using FolkerKinzel.VCards;
 // WORKING !!!!!!!!!!
 // =================================================================================
 
-// var main = new FileWorker();
+var main = new FileWorker();
 // main.GeneralMethod();
 
 // =================================================================================
 // TESTING :
 // =================================================================================
 
-
+string filePath = "\\ccontacts.vcf";
+VcfProfileParser.ParseVcf(filePath);
 
 // Reads a very large VCF file whose contents cannot be completely held in memory.
 //

@@ -30,7 +30,7 @@ namespace Core_MVC_24.Infrastructure
             : base()
         {
             MapProperty(0, x => x.ProfileID);
-            MapProperty(1, x => x.AType);
+            MapProperty(1, x => x.AaaType);
             MapProperty(2, x => x.Name);
             MapProperty(3, x => x.GivenName);
             MapProperty(4, x => x.AdditionalName);

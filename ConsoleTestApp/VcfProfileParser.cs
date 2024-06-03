@@ -13,6 +13,9 @@ namespace ConsoleTestApp
         // 4794069441-HLT
         // 9223372036854775807
         // 380672465888
+        // 12127365000
+        // Pennsylvania65000
+        // 12345678901234567
     }
 
     public static class VcfProfileParser
