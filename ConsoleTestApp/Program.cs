@@ -12,18 +12,20 @@ var main = new FileWorker();
 // TESTING :
 // =================================================================================
 
-string filePath = "\\ccontacts.vcf";
-VcfProfileParser.ParseVcf(filePath);
+string fileVcfPath = GIT_IGNORE.fileVcfPath;
+// VcfProfileParser.ParseVcf(fileVcfPath);
 
 // Reads a very large VCF file whose contents cannot be completely held in memory.
 //
-// using var textReader = new StreamReader(filePath);
-// using var vcfReader = new VcfReader(textReader);
-// IEnumerable<VCard> result = vcfReader.ReadToEnd();
-// var TEST = result.FirstOrDefault();
-// Console.WriteLine("The file \"{0}\" contains {1} vCards.",
-//                   Path.GetFileName(filePath),
-//                   result.Count());
+using var textReader = new StreamReader(fileVcfPath);
+using var vcfReader = new VcfReader(textReader);
+
+IEnumerable<VCard> result = vcfReader.ReadToEnd();
+var TEST = result.FirstOrDefault();
+
+Console.WriteLine("The file \"{0}\" contains {1} vCards.",
+                  Path.GetFileName(fileVcfPath),
+                  result.Count());
 
 Console.WriteLine("\r\nFinished.\r\n");
 Console.ReadLine();
