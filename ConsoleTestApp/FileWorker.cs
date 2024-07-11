@@ -36,7 +36,7 @@ namespace ConsoleTestApp
             return isWrong;
         }
 
-        internal void GeneralMethod()
+        internal void CreateDatabase()
         {
             string _generalPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads\\EOS\\Tests\\");
             string _dabaseFile = Path.Combine(_generalPath, "workFolder\\TestDb24.dat");

@@ -42,7 +42,7 @@ static void CreateDbIfNotExists(IHost host)
             var context = services.GetRequiredService<DataContext>();
 
             // Can be run while start App:
-            // DbInitializer.Initialize(context);
+            DbInitializer.Initialize(context);
         }
         catch (Exception ex)
         {
