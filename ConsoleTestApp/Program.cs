@@ -3,8 +3,8 @@
 // WORKING !!!!!!!!!!
 // =================================================================================
 
-var main = new FileWorker();
-main.CreateDatabase();
+// var main = new FileWorker();
+// main.CreateDatabase();
 
 // =================================================================================
 // TESTING :
@@ -12,6 +12,8 @@ main.CreateDatabase();
 
 
 // VcfProfileParserFK.VcfParseRun();
+
+
 
 
 // https://4js.com/online_documentation/fjs-fgl-3.00.05-manual-html/c_fgl_odiagsqt_017.html
