@@ -4,7 +4,37 @@ namespace ConsoleTestApp
 {
     public class ImageProcessor
     {
-        public static void Test()
+        public static void ResizeImage(string inputImagePath, string outputImagePath)
+        {
+            using (var originalImage = new Bitmap(inputImagePath))
+            {
+                int newWidth = 1024;
+                int newHeight = 1024;
+
+                // Create a new bitmap with the specified size
+                var resizedImage = new Bitmap(newWidth, newHeight);
+
+                // Use Graphics to draw the resized image (with Bigger size!)
+
+                using (var graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+
+                    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+
+                    graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+                }
+
+                resizedImage.Save(outputImagePath);
+
+                Console.WriteLine("Image resized and saved to " + outputImagePath);
+            }
+        }
+
+
+        public static void InsertSmallImageIntoBigOne()
         {
             string sourceImagePath = "source.png";
             string targetImagePath = "target.png";

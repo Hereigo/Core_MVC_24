@@ -2,7 +2,6 @@ using Core_MVC_24.Data;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<DataContext>();
 
