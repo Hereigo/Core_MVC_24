@@ -28,7 +28,7 @@ namespace ConsoleTestApp
 
     public static class VcfProfileParser
     {
-        public static void TestParseVcf(string vcfFilePath, string imagesSavePath)
+        public static void TestVcfParsing(string vcfFilePath, string imagesSavePath)
         {
             try
             {
