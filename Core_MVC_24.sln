@@ -12,10 +12,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_MVC_24", "Core_MVC_24\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{7448FDC5-BD65-42A8-B219-6552EA855487}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestSharpTest", "RestSharpTest\RestSharpTest.csproj", "{8752C666-CB41-4365-B2D2-5E0BA2280DBD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp_46", "WebApp_46\WebApp_46.csproj", "{D5C56C75-FEBF-4C09-853D-1D32706C924C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,14 +26,6 @@ Global
 		{7448FDC5-BD65-42A8-B219-6552EA855487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7448FDC5-BD65-42A8-B219-6552EA855487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7448FDC5-BD65-42A8-B219-6552EA855487}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8752C666-CB41-4365-B2D2-5E0BA2280DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8752C666-CB41-4365-B2D2-5E0BA2280DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8752C666-CB41-4365-B2D2-5E0BA2280DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8752C666-CB41-4365-B2D2-5E0BA2280DBD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5C56C75-FEBF-4C09-853D-1D32706C924C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5C56C75-FEBF-4C09-853D-1D32706C924C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5C56C75-FEBF-4C09-853D-1D32706C924C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5C56C75-FEBF-4C09-853D-1D32706C924C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
