@@ -1,47 +1,46 @@
-﻿using System.Drawing;
+﻿using System.Text.RegularExpressions;
+using System.Drawing;
 using System.Text;
+using System.Text.Json;
+using System.Web;
 
 namespace ConsoleTestApp
 {
     public class VCard
     {
         public DateTime Created { get; set; }
-        public string FileUploaded { get; set; }
-        public string Group { get; set; }
-        public string Version { get; set; }
-        public string FullName { get; set; }
-        public string Name { get; set; }
         public string Categories { get; set; }
+        public string FileUploaded { get; set; }
+        public string FullName { get; set; }
+        public string Group { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+        public string PhoneNumber2 { get; set; }
         public string PhotoFileName { get; set; }
-        public string PhoneNumber { get; set; } // Convert 2 LONG !!!
-        public string PhoneNumber2 { get; set; } // Convert 2 LONG !!!
-        // 2147483647
-        // 0672465888
+        public string Version { get; set; }
         // 4794069441-HLT
-        // 9223372036854775807
+        // 0689012345
         // 380672465888
-        // 12127365000
         // Pennsylvania65000
         // 12345678901234567
-        // 9223372036854775807
+        // 9223372036854775807 Type-Long
     }
 
     public static class VcfProfileParser
     {
-        public static void ConvertWin1251toUTF8()
+        public static void TestParseVcf(string vcfFilePath, string imagesSavePath)
         {
-            // Sample string encoded in Windows-1251
-            byte[] windows1251Bytes = new byte[] { 0xC4, 0xE5, 0xEC, 0xE4, 0xF0 };  // "Привет" in Windows-1251
-
-            // Decode the byte array from Windows-1251 encoding
-            string decodedString = Encoding.GetEncoding("windows-1251").GetString(windows1251Bytes);
-
-            // Now 'decodedString' contains the text in UTF-16 (the default string encoding in .NET)
-            // If you need to explicitly convert to UTF-8, you can do it like this:
-            byte[] utf8Bytes = Encoding.UTF8.GetBytes(decodedString);
-
-            // You can now work with 'utf8Bytes' in UTF-8 encoding, or just use 'decodedString' as needed.
-            Console.WriteLine("Decoded string: " + decodedString);
+            try
+            {
+                var vCards = ParseVcfFile(vcfFilePath, imagesSavePath);
+                string json = JsonSerializer.Serialize(vCards);
+                File.WriteAllText(Path.Combine(imagesSavePath, DateTime.Now.ToString("yyMMddHHmmss") + ".json"), json);
+                Console.WriteLine("Json saved to - " + imagesSavePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public static List<VCard> ParseVcfFile(string vcfFilePath, string imagesSavePath)
@@ -83,15 +82,19 @@ namespace ConsoleTestApp
                         else if (line.StartsWith("X-GROUP:")) vCard.Group += "," + line.Substring("X-GROUP:".Length).TrimStart(',');
                         else if (line.StartsWith("N;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:"))
                         {
-                            vCard.Name += "," + line.Substring("N;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:".Length).TrimStart(',').TrimEnd();
+                            vCard.Name += line.Substring("N;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:".Length).TrimStart(',').TrimEnd();
                             while (vCard.Name.EndsWith("="))
-                                vCard.Name += "," + streamReader.ReadLine();
+                                vCard.Name += streamReader.ReadLine();
+
+                            vCard.Name = HttpUtility.UrlDecode(vCard.Name.Replace("==", "=").Replace("=", "%"));
                         }
                         else if (line.StartsWith("FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:"))
                         {
                             vCard.FullName += line.Substring("FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:".Length).TrimStart(',').TrimEnd();
                             while (vCard.FullName.EndsWith("="))
-                                vCard.FullName += "," + streamReader.ReadLine();
+                                vCard.FullName += streamReader.ReadLine();
+
+                            vCard.FullName = HttpUtility.UrlDecode(vCard.FullName.Replace("==", "=").Replace("=", "%"));
                         }
                         else if (line.StartsWith("PHOTO;ENCODING=BASE64;JPEG:") || line.StartsWith("NOTE:Photo:"))
                         {
@@ -101,23 +104,19 @@ namespace ConsoleTestApp
 
                             string base64image = line.Substring(colonIndex + 1);
 
-                            while (!string.IsNullOrWhiteSpace(line = streamReader.ReadLine()))
-                            {
-                                base64image += line;
-                            }
+                            while (!string.IsNullOrWhiteSpace(line = streamReader.ReadLine())) base64image += line;
 
                             try
                             {
                                 byte[] imageBytes = Convert.FromBase64String(base64image);
-
-                                string guidName = Guid.NewGuid() + ".jpg";
+                                string guidImageName = Guid.NewGuid() + ".jpg";
 
                                 using (MemoryStream ms = new MemoryStream(imageBytes))
                                 {
                                     using (Image image = Image.FromStream(ms))
                                     {
-                                        image.Save(Path.Combine(imagesSavePath,guidName));
-                                        vCard.PhotoFileName = guidName;
+                                        image.Save(Path.Combine(imagesSavePath, guidImageName));
+                                        vCard.PhotoFileName = guidImageName;
                                     }
                                 }
                             }
