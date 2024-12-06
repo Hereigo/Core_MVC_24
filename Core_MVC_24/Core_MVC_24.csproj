@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleTestApp\ConsoleTestApp.csproj" />
+    <ProjectReference Include="..\ConsoleTestApp\APP_4_TESTS.csproj" />
   </ItemGroup>
 
 </Project>

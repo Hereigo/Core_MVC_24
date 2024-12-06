@@ -67,7 +67,7 @@ public static class Cryptonic
         using CryptoStream cs = new CryptoStream(fsOutput, encryptor, CryptoStreamMode.Write);
         fsInput.CopyTo(cs);
 
-        System.Threading.Thread.Sleep(3000);
+        Thread.Sleep(3000);
     }
 
     public static void DecryptByPass(string encrypted, string decrypted, string password)
@@ -79,6 +79,6 @@ public static class Cryptonic
         using CryptoStream cs = new CryptoStream(fsOutput, decryptor, CryptoStreamMode.Write);
         fsInput.CopyTo(cs);
 
-        System.Threading.Thread.Sleep(3000);
+        Thread.Sleep(3000);
     }
 }

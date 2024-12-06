@@ -3,9 +3,9 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace ConsoleTestApp
 {
-    internal class MsWordProcessor
+    public class MsWordProcessor
     {
-        static void ProcessRun()
+        public static void ProcessRun()
         {
             string msWordTemplate = Constants.PathDownloads + "TEMPLATE.docx";
             string outputFilePath = msWordTemplate.Replace("LATE", DateTime.Now.ToString("_ddHHmmss"));
