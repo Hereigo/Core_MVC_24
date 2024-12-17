@@ -1,4 +1,5 @@
-﻿using Core_MVC_24.Models;
+﻿using APP_4_TESTS;
+using Core_MVC_24.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core_MVC_24.Data
@@ -23,8 +24,12 @@ namespace Core_MVC_24.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Profile>().ToTable("Profiles");
+
+            modelBuilder.Entity<CsvProfile>().ToTable("CsvProfile");
         }
 
         public DbSet<Profile> Profiles { get; set; }
+
+        public DbSet<CsvProfile> CsvProfiles { get; set; }
     }
 }

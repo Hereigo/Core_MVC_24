@@ -13,6 +13,8 @@ namespace Core_MVC_24.Controllers
         {
             ViewBag.fileExists = _fileMan.isDbFileExists();
 
+            ViewBag.IndexMessage = "...";
+
             return View();
         }
 
@@ -21,22 +23,32 @@ namespace Core_MVC_24.Controllers
         {
             if (fileToUpload != null && fileToUpload.Length > 0)
             {
-                string FileNameOnServer = Path.GetTempPath();
-                FileNameOnServer += fileToUpload.FileName;
-                
-                long FileContentLength = fileToUpload.Length; // bytes
-                string FileContentType = fileToUpload.ContentType;
+                try
+                {
+                    string FileNameOnServer = Path.GetTempPath();
+                    FileNameOnServer += fileToUpload.FileName;
 
-                using var stream = System.IO.File.Create(FileNameOnServer);
-                fileToUpload.CopyTo(stream);
+                    long FileContentLength = fileToUpload.Length; // bytes
+                    string FileContentType = fileToUpload.ContentType;
 
-                return View("UploadComplete", this);
+                    using var stream = System.IO.File.Create(FileNameOnServer);
+                    fileToUpload.CopyTo(stream);
+
+                    // TODO
+                    // upload into DB here ..........................
+
+                    ViewBag.IndexMessage = "File uploaded and parsed successfully."; 
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.IndexMessage = "Error - "+ ex.Message;
+                }
             }
             else
             {
-                // User did not select a file
-                return View("Index");
+                ViewBag.IndexMessage = "File not selected.";    
             }
+            return View("Index");
         }
 
         public IActionResult Privacy()

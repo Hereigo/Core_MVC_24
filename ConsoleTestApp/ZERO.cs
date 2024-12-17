@@ -31,10 +31,9 @@ switch (yourSelect)
         CsvParser.TestCsvParsing(fileCsv, workDir);
         break;
     default:
+        // TEMP TESTING BLOCK ...
         string unicodeText = @"\u0421\u043E\u043D\u044F, \u0414\u0430\u0448\u0438\u043D\u0430 \u0441\u0456\u0441\u0442\u0440";
-
         string TEST = Regex.Replace(unicodeText, @"\\u([0-9A-Fa-f]{4})", m => char.ConvertFromUtf32(int.Parse(m.Groups[1].Value, System.Globalization.NumberStyles.HexNumber)));
-
         File.WriteAllText(Path.Combine(workDir, DateTime.Now.ToString("yyMMddHHmmss") + ".json"), TEST);
         break;
 }
